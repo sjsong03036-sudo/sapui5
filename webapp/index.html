@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAPUI5 Starter</title>
+  <style>
+    html, body, body > div, #container, #container-uiarea {
+      height: 100%;
+    }
+    body { margin: 0; }
+  </style>
+  <script id="sap-ui-bootstrap"
+    src="resources/sap-ui-core.js"
+    data-sap-ui-theme="sap_horizon"
+    data-sap-ui-resourceroots='{"local.sapui5.starter":"./"}'
+    data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+    data-sap-ui-compatversion="edge"
+    data-sap-ui-async="true"></script>
+</head>
+<body class="sapUiBody" id="content">
+  <div data-sap-ui-component data-name="local.sapui5.starter" data-id="container" data-height="100%" data-settings='{"id":"starter"}'></div>
+</body>
+</html>

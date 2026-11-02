@@ -1,0 +1,12 @@
+﻿<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true">
+  <App>
+    <Page title="SAPUI5 Starter">
+      <content>
+        <VBox class="sapUiMediumMargin">
+          <Title text="Hello, SAPUI5!" level="H1" />
+          <Text text="SAPUI5 프로젝트가 준비되었습니다." />
+        </VBox>
+      </content>
+    </Page>
+  </App>
+</mvc:View>

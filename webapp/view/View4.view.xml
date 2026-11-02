@@ -1,0 +1,68 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+  xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+  controllerName="local.sapui5.starter.controller.View4" displayBlock="true">
+    <Page title="View4 - 여러 모델로 검색조건과 결과 바인딩" class="sapUiResponsiveContentPadding">
+      <content>
+        <VBox>
+          <MessageStrip text="search: 검색값 / options: 선택지 / result: 상품 목록. 검색 버튼을 누르면 조건에 맞는 결과를 표시합니다."
+            showIcon="true" type="Information" class="sapUiSmallMarginTop sapUiSmallMarginBottom" />
+          <Panel headerText="검색조건">
+            <content>
+              <form:SimpleForm editable="true" layout="ResponsiveGridLayout"
+                labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+                emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+                <form:content>
+                  <Label text="상품명 (Input)" labelFor="keywordInput" />
+                  <!-- 입력값은 search 모델에 저장됩니다. Enter로도 검색합니다. -->
+                  <Input id="keywordInput" value="{search>/keyword}" placeholder="예: 노트북" submit=".onSearch" />
+
+                  <Label text="분류 (ComboBox)" labelFor="categoryCombo" />
+                  <!-- 하나의 컨트롤에서도 두 모델을 함께 사용합니다!
+                       선택한 key는 search, 선택지 배열과 각 항목은 options 모델입니다. -->
+                  <ComboBox id="categoryCombo" width="100%"
+                    selectedKey="{search>/category}" items="{options>/categories}">
+                    <items><core:Item key="{options>key}" text="{options>text}" /></items>
+                  </ComboBox>
+
+                  <Label text="판매 상태 (Select)" labelFor="statusSelect" />
+                  <!-- Select도 동일하게 선택값 모델과 선택지 모델을 분리합니다. -->
+                  <Select id="statusSelect" width="100%" forceSelection="false"
+                    selectedKey="{search>/status}" items="{options>/statuses}">
+                    <items><core:Item key="{options>key}" text="{options>text}" /></items>
+                  </Select>
+                </form:content>
+              </form:SimpleForm>
+              <HBox justifyContent="End" wrap="Wrap">
+                <Button text="검색" icon="sap-icon://search" type="Emphasized" press=".onSearch" class="sapUiSmallMarginEnd" />
+                <Button text="초기화" press=".onReset" />
+              </HBox>
+            </content>
+          </Panel>
+
+          <Title text="검색 결과" level="H2" class="sapUiMediumMarginTop sapUiSmallMarginBottom" />
+          <!-- 테이블은 검색조건 모델과 별개인 result 모델을 사용합니다.
+               /products는 배열 전체, 행 내부의 name 등은 각 상품 기준 상대 경로입니다. -->
+          <Table id="resultTable" items="{result>/products}" noDataText="검색 결과가 없습니다." class="sapUiMediumMarginBottom">
+            <columns>
+              <Column width="6rem"><Text text="상품 ID" /></Column>
+              <Column><Text text="상품명" /></Column>
+              <Column minScreenWidth="Tablet" demandPopin="true"><Text text="분류" /></Column>
+              <Column minScreenWidth="Tablet" demandPopin="true"><Text text="판매 상태" /></Column>
+              <Column hAlign="End"><Text text="가격" /></Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{result>id}" />
+                  <Text text="{result>name}" />
+                  <Text text="{result>category}" />
+                  <Text text="{result>status}" />
+                  <ObjectNumber number="{path: 'result>price', type: 'sap.ui.model.type.Integer'}" unit="원" />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </VBox>
+      </content>
+    </Page>
+</mvc:View>

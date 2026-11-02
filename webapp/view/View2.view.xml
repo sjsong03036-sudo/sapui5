@@ -1,0 +1,76 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:table="sap.ui.table"
+  xmlns:rowmodes="sap.ui.table.rowmodes"
+  controllerName="local.sapui5.starter.controller.View2"
+  displayBlock="true">
+  <!-- 기본 Table은 sap.m.Table, table:Table은 sap.ui.table.Table입니다. -->
+    <Page title="View2 - 테이블 바인딩 연습" class="sapUiResponsiveContentPadding">
+      <content>
+        <VBox>
+          <Title text="1. sap.ui.table.Table : rows 바인딩" level="H2" class="sapUiSmallMarginTop sapUiSmallMarginBottom" />
+          <Text text="각 Column의 template에 셀을 정의합니다. 두 테이블은 같은 상품 배열을 표시합니다." class="sapUiSmallMarginBottom" />
+
+          <!-- rows는 배열 전체에 대한 절대 경로입니다.
+               shop은 onInit의 setModel(oModel, 'shop')에서 정한 모델 이름입니다.
+               각 셀은 행의 컨텍스트를 받아 shop>name 같은 상대 경로를 사용합니다.
+               예: 첫 행의 {shop>name}은 /products/0/name을 참조합니다. -->
+          <table:Table id="gridTable" rows="{shop>/products}" selectionMode="None" width="100%">
+            <table:rowMode>
+              <rowmodes:Fixed rowCount="5" />
+            </table:rowMode>
+            <table:columns>
+              <table:Column width="7rem">
+                <Label text="상품 ID" />
+                <table:template><Text text="{shop>id}" /></table:template>
+              </table:Column>
+              <table:Column width="10rem">
+                <Label text="상품명" />
+                <table:template><Text text="{shop>name}" /></table:template>
+              </table:Column>
+              <table:Column width="8rem">
+                <Label text="분류" />
+                <table:template><Text text="{shop>category}" /></table:template>
+              </table:Column>
+              <table:Column width="10rem" hAlign="End">
+                <Label text="가격 (원)" />
+                <table:template><ObjectNumber number="{path: 'shop>price', type: 'sap.ui.model.type.Integer'}" unit="원" /></table:template>
+              </table:Column>
+              <table:Column width="7rem" hAlign="End">
+                <Label text="재고" />
+                <table:template><Text text="{shop>stock}" /></table:template>
+              </table:Column>
+            </table:columns>
+          </table:Table>
+
+          <Title text="2. sap.m.Table : items 바인딩" level="H2" class="sapUiMediumMarginTop sapUiSmallMarginBottom" />
+          <Text text="ColumnListItem 하나가 행의 템플릿입니다. cells 순서와 columns 순서를 맞춥니다." class="sapUiSmallMarginBottom" />
+
+          <!-- items에 같은 배열을 바인딩합니다. 배열 항목마다 ColumnListItem이 생성됩니다.
+               columns는 헤더, items 안의 cells는 각 행의 값입니다.
+               셀에서는 앞 테이블과 동일하게 상대 경로를 사용합니다. -->
+          <Table id="responsiveTable" items="{shop>/products}" noDataText="상품 데이터가 없습니다." class="sapUiMediumMarginBottom">
+            <columns>
+              <Column width="7rem"><Text text="상품 ID" /></Column>
+              <Column><Text text="상품명" /></Column>
+              <Column minScreenWidth="Tablet" demandPopin="true"><Text text="분류" /></Column>
+              <Column hAlign="End"><Text text="가격 (원)" /></Column>
+              <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="재고" /></Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{shop>id}" />
+                  <Text text="{shop>name}" />
+                  <Text text="{shop>category}" />
+                  <ObjectNumber number="{path: 'shop>price', type: 'sap.ui.model.type.Integer'}" unit="원" />
+                  <Text text="{shop>stock}" />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </VBox>
+      </content>
+    </Page>
+</mvc:View>

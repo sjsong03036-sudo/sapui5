@@ -1,0 +1,13 @@
+{
+  "name": "sapui5-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal SAPUI5 application",
+  "scripts": {
+    "start": "ui5 serve -o index.html",
+    "build": "ui5 build --clean-dest"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.0"
+  }
+}

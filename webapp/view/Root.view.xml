@@ -1,0 +1,28 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+  controllerName="local.sapui5.starter.controller.Root" displayBlock="true">
+  <!-- 공통 메뉴는 화면 이동 후에도 유지됩니다. 기존 App.view.xml은 그대로 둡니다. -->
+  <App>
+    <Page title="SAPUI5 연습" enableScrolling="false">
+      <subHeader>
+        <OverflowToolbar>
+          <Button text="View1 · Form" type="{= ${navigation>/current} === 'view1' ? 'Emphasized' : 'Transparent' }" press=".onNavigate">
+            <customData><core:CustomData xmlns:core="sap.ui.core" key="route" value="view1" /></customData>
+          </Button>
+          <Button text="View2 · Table" type="{= ${navigation>/current} === 'view2' ? 'Emphasized' : 'Transparent' }" press=".onNavigate">
+            <customData><core:CustomData xmlns:core="sap.ui.core" key="route" value="view2" /></customData>
+          </Button>
+          <Button text="View3 · Element" type="{= ${navigation>/current} === 'view3' ? 'Emphasized' : 'Transparent' }" press=".onNavigate">
+            <customData><core:CustomData xmlns:core="sap.ui.core" key="route" value="view3" /></customData>
+          </Button>
+          <Button text="View4 · Search" type="{= ${navigation>/current} === 'view4' ? 'Emphasized' : 'Transparent' }" press=".onNavigate">
+            <customData><core:CustomData xmlns:core="sap.ui.core" key="route" value="view4" /></customData>
+          </Button>
+        </OverflowToolbar>
+      </subHeader>
+      <content>
+        <!-- 라우터가 이 App의 pages 집계에 View1~4를 넣어 이동합니다. -->
+        <App id="navigationApp" />
+      </content>
+    </Page>
+  </App>
+</mvc:View>

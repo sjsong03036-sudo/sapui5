@@ -1,0 +1,65 @@
+﻿<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" displayBlock="true">
+  <!-- xmlns는 컨트롤의 소속입니다. 기본은 sap.m, form:은 sap.ui.layout.form입니다. -->
+    <Page title="Form과 여백 연습">
+      <content>
+        <!-- Padding은 안쪽 여백입니다. VBox는 자식들을 세로로 배치합니다.
+             100% 너비 요소에 좌우 margin까지 주면 넘칠 수 있어 여기서는 padding을 사용합니다. -->
+        <VBox class="sapUiResponsiveContentPadding">
+          <Title text="1. 입력 폼 (SimpleForm)" level="H2" class="sapUiSmallMarginTop sapUiSmallMarginBottom" />
+          <MessageStrip text="배치 연습용 화면입니다. 저장과 필수값 검증은 연결하지 않았습니다." type="Information" showIcon="true" class="sapUiSmallMarginBottom" />
+          <!-- SimpleForm: Label 다음의 입력 컨트롤이 한 항목입니다.
+               다음 Label은 새 항목, core:Title은 새 그룹을 시작합니다.
+               editable=true는 편집용 간격을 적용하며 입력 가능 여부는 각 Input에서 정합니다.
+               ResponsiveGridLayout은 화면 폭에 맞춰 배치를 조정합니다.
+               labelSpan은 12칸 중 라벨의 칸 수입니다. S=12면 작은 화면에서 입력은 다음 줄로 갑니다.
+               adjustLabelSpan=false로 지정한 라벨 너비를 사용합니다.
+               columns는 그룹의 열 수, emptySpan은 오른쪽에 예약할 빈 칸 수입니다. -->
+          <form:SimpleForm id="profileForm" editable="true" layout="ResponsiveGridLayout"
+            labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+            emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+            columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="true">
+            <form:content>
+              <core:Title text="기본 정보" />
+              <!-- required는 필수 표시입니다. 검증 처리는 별도로 구현해야 합니다. -->
+              <Label text="이름" required="true" labelFor="nameInput" />
+              <Input id="nameInput" placeholder="이름을 입력하세요" />
+              <Label text="이메일" labelFor="emailInput" />
+              <Input id="emailInput" type="Email" placeholder="name@example.com" />
+              <Label text="부서" labelFor="departmentSelect" />
+              <Select id="departmentSelect" width="100%" selectedKey="dev">
+                <items>
+                  <core:Item key="dev" text="개발팀" />
+                  <core:Item key="sales" text="영업팀" />
+                </items>
+              </Select>
+              <Label text="메모" labelFor="memoInput" />
+              <TextArea id="memoInput" rows="3" width="100%" placeholder="메모를 입력하세요" />
+            </form:content>
+          </form:SimpleForm>
+          <Title text="2. Margin과 Padding" level="H2" class="sapUiMediumMarginTop sapUiSmallMarginBottom" />
+          <!-- Margin은 바깥 여백입니다. 여러 클래스는 공백으로 구분합니다.
+               Tiny=0.5rem, Small=1rem, Medium=2rem, Large=3rem.
+               기본 글꼴 16px 기준 약 8/16/32/48px입니다.
+               sapUiSmallMargin: 사방 / Top: 위 / Bottom: 아래.
+               Begin: 글 시작 방향, End: 글 끝 방향 (한국어에서는 왼쪽/오른쪽).
+               예: sapUiMediumMarginBegin은 시작 방향에 2rem 여백을 줍니다. -->
+          <Panel headerText="테두리를 기준으로 여백을 보세요">
+            <content>
+              <Text text="이 문장은 기본 위치입니다." />
+              <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiSmallMarginBottom">
+                <Text text="이 상자는 위/아래 Small, 시작 방향 Medium margin이 있습니다." />
+                <Text text="VBox 안의 문장은 위에서 아래로 배치됩니다." />
+              </VBox>
+            </content>
+          </Panel>
+          <!-- HBox는 가로 배치, wrap=Wrap은 공간 부족 시 줄바꿈입니다.
+               첫 버튼의 End margin으로 버튼 사이 간격을 만듭니다.
+               press 이벤트는 아직 연결하지 않아 클릭 동작은 없습니다. -->
+          <HBox wrap="Wrap" alignItems="Center" class="sapUiMediumMarginTop sapUiMediumMarginBottom">
+            <Button text="버튼 A" type="Emphasized" class="sapUiSmallMarginEnd sapUiTinyMarginBottom" />
+            <Button text="버튼 B" class="sapUiTinyMarginBottom" />
+          </HBox>
+        </VBox>
+      </content>
+    </Page>
+</mvc:View>

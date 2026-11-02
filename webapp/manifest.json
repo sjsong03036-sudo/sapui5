@@ -1,0 +1,97 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "local.sapui5.starter",
+    "type": "application",
+    "title": "SAPUI5 Starter",
+    "description": "Minimal SAPUI5 application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.136.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {},
+        "sap.ui.table": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "rootView": {
+      "viewName": "local.sapui5.starter.view.Root",
+      "type": "XML",
+      "id": "app",
+      "async": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "local.sapui5.starter.view",
+        "controlId": "navigationApp",
+        "controlAggregation": "pages",
+        "async": true,
+        "transition": "show"
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "home",
+          "target": "view1"
+        },
+        {
+          "pattern": "view1",
+          "name": "view1",
+          "target": "view1"
+        },
+        {
+          "pattern": "view2",
+          "name": "view2",
+          "target": "view2"
+        },
+        {
+          "pattern": "view3",
+          "name": "view3",
+          "target": "view3"
+        },
+        {
+          "pattern": "view4",
+          "name": "view4",
+          "target": "view4"
+        }
+      ],
+      "targets": {
+        "view1": {
+          "viewId": "view1",
+          "viewName": "View1"
+        },
+        "view2": {
+          "viewId": "view2",
+          "viewName": "View2"
+        },
+        "view3": {
+          "viewId": "view3",
+          "viewName": "View3"
+        },
+        "view4": {
+          "viewId": "view4",
+          "viewName": "View4"
+        }
+      }
+    }
+  }
+}
